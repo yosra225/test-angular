@@ -1,0 +1,20 @@
+<h2 style="text-align: center;">Welcome to Jetset magazine </h2>
+        <div *ngFor="let party of parties">
+            <fieldset [ngStyle]="{'background-color':getColor(party.nb_place)}">
+                <legend>{{party.title}}</legend>
+                <p> Date :{{party.date}} </p>
+                <p> Type :{{party.type}} </p>
+                <p> Nombre de place :{{party.nb_place}} </p>
+                <p> Description :{{party.description}} </p>
+                <p> Nombre de places disponible :<span id="span{{party.id}}">{{party.nb_place_disponible}}</span></p>
+                <button  (click)="div1Function(party.id)" type="button">Réserver</button><br>
+                
+                <div *ngIf="party.id == selectedID" id="{{party.id}}">
+                <label>Nombre de places à réserver</label><br>
+                <input  type="text" placeholder="saisir un nombre" #nombre><br><br>
+                <button (click)="decrementPlace(party.id,party.nb_place_disponible)" type="button">Valider</button><br>
+            </div>
+
+
+               </fieldset>
+        </div>

@@ -1,0 +1,28 @@
+<div class="container">
+    <h1>Prise de rendez-vous en ligne</h1>
+    <h3>recherche d'un médecin</h3>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+           
+        <div class="form-group">
+            <label for="website">Spécialité:</label>
+            <select #mySelect
+            formControlName="website" class="form-control" (change)='onOptionsSelected(mySelect.value)'>
+                <option disabled>Select spécialité</option>
+                <option *ngFor="let speciality of specialityList">{{speciality}}</option>
+            </select>
+            <table>
+                <tr>
+                  <th>Nom</th>
+                  <th>Specialité</th>
+                  <th>Disponibilité</th>
+                </tr>
+                <tr *ngFor="let doctor of doctorsSelected">
+                  <td>{{doctor.nom}}</td>
+                  <td>{{doctor.specialite}}</td>
+                  <td>{{doctor.disponibilite}}</td>
+                  <td><button [disabled]="!doctor.disponibilite" name="Prendre rendez-vous">Prendre rendez-vous</button></td>
+                </tr>
+              </table>
+        </div>
+    </form>
+</div>
